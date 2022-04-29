@@ -32,6 +32,62 @@ namespace Pianoray {
 
 
 /**
+ * Status for a smoke simulation.
+ */
+class Smoke {
+public:
+    int width, height;
+    double* intensity;
+    double* velocity;
+
+    /**
+     * Initialize.
+     * @param res_x, res_y  Screen resolution.
+     * @param subdivs_x  Subdivisions horizontally.
+     */
+    Smoke(int res_x, int res_y, double subdivs_x) {
+        int subx = (int)subdivs_x;
+        int suby = (int)(subdivs_x * res_y / res_x);
+        int size = subx * suby;
+
+        width = subx;
+        height = suby;
+        intensity = new double[size];
+        velocity = new double[size];
+    }
+
+    double get_i(int x, int y) {
+        return get(intensity, x, y);
+    }
+
+    double get_v(int x, int y) {
+        return get(velocity, x, y);
+    }
+
+    double set_i(int x, int y, int v) {
+        set(intensity, x, y, v);
+    }
+
+    double set_v(int x, int y, int v) {
+        set(velocity, x, y, v);
+    }
+
+private:
+    int index(int x, int y) {
+        return y*width + x;
+    }
+
+    double get(double* array, int x, int y) {
+        return array[index(x, y)];
+    }
+
+    void set(double* array, int x, int y, double v) {
+        array[index(x, y)] = v;
+    }
+};
+
+
+/**
  * Render and simulate smoke.
  *
  * @param img_data, width, height  Image parameters.
