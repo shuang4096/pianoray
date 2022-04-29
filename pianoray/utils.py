@@ -71,7 +71,10 @@ SETTINGS_DEFAULT = {
         "intensity": 0.9,
         "jitter": 0.08,
         "streaks": 6,
-    }
+    },
+    "smoke": {
+        "subdivs": 1,
+    },
 }
 
 

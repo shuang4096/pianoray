@@ -70,3 +70,5 @@ Colors are ``[R, G, B]`` from 0 to 255.
     - ``intensity``: Intensity value.
     - ``jitter``: Random intensity change for each frame.
     - ``streaks``: Number of streaks per glare.
+- ``smoke``: Settings about smoke simulation.
+    - ``subdivs``: Simulation subdivisions per coord.

@@ -28,7 +28,7 @@ from tqdm import trange
 
 from .. import logger
 from ..effects import parse_midi
-from ..effects import Blocks, Keyboard, Glare
+from ..effects import Blocks, Keyboard, Glare, Smoke
 from ..settings import Settings
 from .lib import load_libs
 from .video import Video
@@ -133,6 +133,7 @@ def render_frames(settings, libs, video, cache, real_start=None) -> int:
     blocks = Blocks(settings, cache, libs)
     keyboard = Keyboard(settings, cache, libs)
     glare = Glare(settings, cache, libs, notes)
+    smoke = Smoke(settings, cache, libs)
 
     # Render
     if real_start is None:
@@ -148,6 +149,7 @@ def render_frames(settings, libs, video, cache, real_start=None) -> int:
 
         img = np.zeros((*settings.video.resolution[::-1], 3), dtype=np.uint8)
 
+        smoke.render(settings, img, frame, notes)
         blocks.render(settings, img, frame, notes)
         keyboard.render(settings, img, frame)
         glare.render(settings, img, frame, notes)

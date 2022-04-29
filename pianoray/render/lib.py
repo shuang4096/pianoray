@@ -57,7 +57,20 @@ def load_libs(cache: Path) -> Mapping[str, ctypes.CDLL]:
         Types.double, Types.double, Types.double, Types.double, Types.int,
     ]
 
+    smoke = build_lib(
+        ["effects/smoke.cpp"],
+        cache,
+        "smoke",
+    )
+    smoke.render_smoke.argtypes = [
+        Types.img, Types.int, Types.int,
+        Types.int,
+        Types.int, Types.arr_int, Types.arr_double, Types.arr_double,
+        Types.double, Types.double,
+    ]
+
     return {
         "blocks": blocks,
         "glare": glare,
+        "smoke": smoke,
     }
