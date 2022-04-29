@@ -72,6 +72,17 @@ public:
         set(velocity, x, y, v);
     }
 
+    void render(Image& img) {
+        double scale_x = (double)img.width / width;
+        double scale_y = (double)img.height / height;
+
+        for (int sy = 0; sy < height; sy++) {
+            for (int sx = 0; sx < width; sx++) {
+
+            }
+        }
+    }
+
 private:
     int index(int x, int y) {
         return y*width + x;
